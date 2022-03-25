@@ -40,7 +40,7 @@ public class CameraCrop {
         String id_user;
         Activity activity;
 
-        CameraCrop(Activity activity,String id)
+    public    CameraCrop(Activity activity,String id)
         {
                 this.activity = activity;
                 this.id_user = id;
