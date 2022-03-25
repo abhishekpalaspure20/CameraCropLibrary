@@ -2,10 +2,8 @@ package com.example.cameracroplibrary;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
-import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,7 +11,6 @@ import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -21,10 +18,6 @@ import androidx.annotation.RequiresApi;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 public class CameraCrop {
         int rotatedWidth,  rotatedHeight ,  notRoatedWidth,  notRotatedHeight;
@@ -39,6 +32,8 @@ public class CameraCrop {
 
         String id_user;
         Activity activity;
+
+        OnCapturedImage onCapturedImage;
 
     public    CameraCrop(Activity activity,String id)
         {
@@ -83,6 +78,7 @@ public class CameraCrop {
             this.notRoatedWidth = notRoatedWidth;
             this.notRotatedHeight = notRotatedHeight;
 
+            onCapturedImage  = (OnCapturedImage) activity;
 
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
             StrictMode.setVmPolicy(builder.build());
@@ -112,13 +108,15 @@ public class CameraCrop {
 
                                         Uri uri = picUri;
                                         Log.i("RRRR","TTT 0.2");
-                                        performCrop( rotatedWidth,  rotatedHeight ,  notRoatedWidth,  notRotatedHeight);
+                                     //   performCrop( rotatedWidth,  rotatedHeight ,  notRoatedWidth,  notRotatedHeight);
                                         // Log.d("picUri", "PIC URI" + uri.toString());
+
+                                        onCapturedImage.imageCaptured(uri);
 
                                 } else if (requestCode == PICK_IMAGE_REQUEST) {
                                         picUri = data.getData();
-
-                                        performCrop(rotatedWidth,  rotatedHeight ,  notRoatedWidth,  notRotatedHeight);
+                                        onCapturedImage.imageCaptured(picUri);
+                                       // performCrop(rotatedWidth,  rotatedHeight ,  notRoatedWidth,  notRotatedHeight);
                                 }
 
                                 //user is returning from cropping the image
