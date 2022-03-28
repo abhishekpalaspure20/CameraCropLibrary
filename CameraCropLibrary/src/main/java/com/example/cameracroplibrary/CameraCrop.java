@@ -67,7 +67,7 @@ public class CameraCrop {
 
         }
 
-    public void captureImage(int rotatedWidth, int rotatedHeight , int notRoatedWidth, int notRotatedHeight){
+    public void captureImage(int rotatedWidth, int rotatedHeight , int notRoatedWidth, int notRotatedHeight, OnCapturedImage onCapturedImage){
 
 //            Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
 //            Camera camera = Camera.open();
@@ -78,7 +78,7 @@ public class CameraCrop {
             this.notRoatedWidth = notRoatedWidth;
             this.notRotatedHeight = notRotatedHeight;
 
-            onCapturedImage  = (OnCapturedImage) activity;
+            this.onCapturedImage  = onCapturedImage;
 
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
             StrictMode.setVmPolicy(builder.build());
@@ -111,11 +111,11 @@ public class CameraCrop {
                                      //   performCrop( rotatedWidth,  rotatedHeight ,  notRoatedWidth,  notRotatedHeight);
                                         // Log.d("picUri", "PIC URI" + uri.toString());
 
-                                        onCapturedImage.imageCaptured(uri);
+                                        this.onCapturedImage.imageCaptured(uri);
 
                                 } else if (requestCode == PICK_IMAGE_REQUEST) {
                                         picUri = data.getData();
-                                        onCapturedImage.imageCaptured(picUri);
+                                        this.onCapturedImage.imageCaptured(picUri);
                                        // performCrop(rotatedWidth,  rotatedHeight ,  notRoatedWidth,  notRotatedHeight);
                                 }
 
