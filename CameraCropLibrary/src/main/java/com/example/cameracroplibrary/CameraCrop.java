@@ -93,6 +93,8 @@ public class CameraCrop {
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, picUri);
             this.activity.startActivityForResult(takePictureIntent, CAMERA_CAPTURE);
 
+            Log.i("RRRR","TTT 0.0.1");
+
     }
 
 
@@ -100,7 +102,7 @@ public class CameraCrop {
         protected void onActivityResult(int requestCode, int resultCode, Intent data) {
                 try {
 
-                        if (resultCode == activity.RESULT_OK) {
+                        if (resultCode == Activity.RESULT_OK) {
                                 //user is returning from capturing an image using the camera
                                 //     Toast.makeText(this, "Activity result="+resultCode+"request="+requestCode+"camera"+CAMERA_CAPTURE, Toast.LENGTH_SHORT).show();
                                 if (requestCode == CAMERA_CAPTURE) {
