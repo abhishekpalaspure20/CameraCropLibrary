@@ -144,7 +144,11 @@ public class CameraCrop {
                                 }
 
                         }
+                        else{
+                                Log.i("RRRR","TTT in else");
+                        }
                 } catch (Exception e) {
+                        Log.i("RRRR","TTT errror e = "+e.getMessage());
                         //    Toast.makeText(this, "error="+e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
         }
