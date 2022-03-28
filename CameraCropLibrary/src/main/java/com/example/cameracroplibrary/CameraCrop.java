@@ -149,7 +149,7 @@ public class CameraCrop {
 
 
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-        private Photo performCrop(int rotatedWidth, int rotatedHeight , int notRoatedWidth, int notRotatedHeight) {
+        public Photo performCrop(int rotatedWidth, int rotatedHeight , int notRoatedWidth, int notRotatedHeight) {
 
                 try {
 
