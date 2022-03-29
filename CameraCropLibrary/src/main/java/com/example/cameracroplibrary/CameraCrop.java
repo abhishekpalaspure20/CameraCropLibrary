@@ -13,11 +13,19 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RequiresApi;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 
 public class CameraCrop {
         int rotatedWidth,  rotatedHeight ,  notRoatedWidth,  notRotatedHeight;
@@ -34,6 +42,8 @@ public class CameraCrop {
         Activity activity;
 
         OnCapturedImage onCapturedImage;
+
+        ActivityResultLauncher activityResultLauncher;
 
     public    CameraCrop(Activity activity,String id)
         {
@@ -91,11 +101,25 @@ public class CameraCrop {
             File imageFile = new File(imageFilePath);
             picUri = Uri.fromFile(imageFile); // convert path to Uri
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, picUri);
-            this.activity.startActivityForResult(takePictureIntent, CAMERA_CAPTURE);
+         //   this.activity.startActivityForResult(takePictureIntent, CAMERA_CAPTURE);
 
+
+            if (takePictureIntent.resolveActivity(activity.getPackageManager()) != null) {
+                    activityResultLauncher.launch(takePictureIntent);
+            } else {
+
+
+                    Log.i("RRRR","There is no app that support this action");
+            }
             Log.i("RRRR","TTT 0.0.1");
 
+
+
+
     }
+
+
+
 
 
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
