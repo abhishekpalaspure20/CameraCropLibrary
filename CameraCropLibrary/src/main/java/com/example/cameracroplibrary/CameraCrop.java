@@ -77,7 +77,7 @@ public class CameraCrop {
 
         }
 
-    public void captureImage(int rotatedWidth, int rotatedHeight , int notRoatedWidth, int notRotatedHeight, OnCapturedImage onCapturedImage){
+    public void captureImage(int rotatedWidth, int rotatedHeight , int notRoatedWidth, int notRotatedHeight, OnCapturedImage onCapturedImage, ActivityResultLauncher aclauncher){
 
 //            Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
 //            Camera camera = Camera.open();
@@ -105,7 +105,7 @@ public class CameraCrop {
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             if (intent.resolveActivity(activity.getPackageManager()) != null) {
-                     activityResultLauncher.launch(intent);
+                    aclauncher.launch(intent);
             } else {
 
 
