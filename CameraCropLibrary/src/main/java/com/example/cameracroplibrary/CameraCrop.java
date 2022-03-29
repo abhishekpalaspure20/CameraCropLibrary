@@ -104,8 +104,8 @@ public class CameraCrop {
          //   this.activity.startActivityForResult(takePictureIntent, CAMERA_CAPTURE);
 
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            if (intent.resolveActivity(activity.getPackageManager()) != null) {
-                    aclauncher.launch(intent);
+            if (takePictureIntent.resolveActivity(activity.getPackageManager()) != null) {
+                    aclauncher.launch(takePictureIntent);
             } else {
 
 
